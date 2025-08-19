@@ -1,0 +1,130 @@
+:root {
+    --rosa: #BB8991;
+    --verde-escuro: #3A503D;
+    --verde-claro: #91A697;
+    --cinza: #C4C4C4;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--verde-claro), var(--rosa));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-logo {
+    width: 250px;
+    margin: -30px 0 0 0;
+    /* ajuste esse valor para o tamanho ideal */
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.login-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #3A503D;
+    margin: -50px 0 0 0;
+    /* ou a cor que quiser */
+}
+
+
+.login-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 430px;
+    text-align: center;
+}
+
+#login-modal h1 {
+    color: var(--verde-escuro);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: left;
+}
+
+.login-form label {
+    color: var(--verde-escuro);
+    font-weight: bold;
+}
+
+.login-form input {
+    padding: 0.7rem;
+    border: 1px solid var(--cinza);
+    border-radius: 8px;
+    width: 100%;
+}
+
+.login-form button {
+    background: var(--rosa);
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 1rem;
+}
+
+.login-form button:hover {
+    background: #a46e77;
+}
+
+.forgot-password {
+    font-size: 0.9rem;
+    color: var(--verde-escuro);
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin-top: 0.8rem;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.register-section {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.register-section p {
+    margin-bottom: 0.3rem;
+    font-size: 0.85rem;
+    color: var(--verde-escuro);
+}
+
+.register-section a {
+    font-size: 0.95rem;
+    color: var(--verde-escuro);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-section a:hover {
+    text-decoration: underline;
+}

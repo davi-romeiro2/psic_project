@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login/cadastro.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.min.css" />
+</head>
+
+<body>
+    <!-- Modal de Cadastro -->
+    <div id="register-modal">
+        <h2>Cadastro</h2>
+        <form class="register-form">
+            <div class="age-question-container">
+                <p class="age-question-text">Quantos anos você tem?</p>
+                <div class="checkboxes">
+                    <label><input type="checkbox" name="type" value="crianca"> Criança (5–11 anos)</label>
+                    <label><input type="checkbox" name="type" value="adolescente"> Adolescente (12–17 anos)</label>
+                    <label><input type="checkbox" name="type" value="adulto"> Adulto (+18)</label>
+                </div>
+            </div>
+
+            <!-- Criança ou Adolescente -->
+            <div id="form-kid-teen" class="hidden">
+
+                <div class="profile-pic-container">
+                    <label class="profile-pic">
+                        <span class="profile-pic-text">+</span>
+                        <input type="file" class="profile-pic-input" accept="image/*" onchange="previewImage(event)">
+                    </label>
+                    <div style="margin-top:5px; font-size:12px; color:#666;">
+                        Foto de perfil (opcional)
+                    </div>
+                </div>
+
+                <label>Email</label>
+                <input type="email" placeholder="Digite seu email" required />
+
+                <label>Email do responsável</label>
+                <input type="email" placeholder="Digite o email do responsável" required />
+
+                <label>Senha</label>
+                <ul class="password-requirements">
+                    <li id="kid-req-uppercase">• Uma letra maiúscula</li>
+                    <li id="kid-req-special">• Um caractere especial (@#$%&*)</li>
+                    <li id="kid-req-number">• Um número</li>
+                    <li id="kid-req-length">• No mínimo 8 caracteres</li>
+                </ul>
+                <input type="password" id="password-cadastro-kid" required />
+
+                <label>Nome Completo</label>
+                <input type="text" placeholder="Digite seu nome completo" required />
+
+                <label>Idade</label>
+                <div id="age-kid-teen-container"></div>
+
+                <label>Gênero</label>
+                <select id="genero" required>
+                    <option value="">Selecione seu gênero (registrado ao nascer)</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Outro">Outro</option>
+                </select>
+
+                <label for="phone">Telefone dos responsavéis (WhatsApp)</label>
+                <input type="tel" id="phone" value="+55 ▼ " required>
+
+                <label for="phone">Seu Telefone (WhatsApp)</label>
+                <input type="tel" id="phone2" value="+55 ▼ " required>
+            </div>
+
+            <!-- Adulto -->
+            <div id="form-adult" class="hidden">
+
+                <div class="profile-pic-container">
+                    <label class="profile-pic">
+                        <span class="profile-pic-text">+</span>
+                        <input type="file" class="profile-pic-input" accept="image/*" onchange="previewImage(event)">
+                    </label>
+                </div>
+
+                <label>Email</label>
+                <input type="email" placeholder="Digite seu email" required />
+
+                <label>Senha</label>
+                <ul class="password-requirements">
+                    <li id="adult-req-uppercase">• Uma letra maiúscula</li>
+                    <li id="adult-req-special">• Um caractere especial (@#$%&*)</li>
+                    <li id="adult-req-number">• Um número</li>
+                    <li id="adult-req-length">• No mínimo 8 caracteres</li>
+                </ul>
+                <input type="password" id="password-cadastro-adult" required />
+
+                <label>Nome Completo</label>
+                <input type="text" placeholder="Digite seu nome completo" required />
+
+                <label>Idade</label>
+                <input type="number" id="age-adult" placeholder="Digite sua idade" required />
+
+                <label>Gênero</label>
+                <select id="genero" required>
+                    <option value="">Selecione seu gênero (registrado ao nascer)</option>
+                    <option>Masculino</option>
+                    <option>Feminino</option>
+                    <option>Outro</option>
+                </select>
+
+                <label for="phone">Seu telefone (WhatsApp)</label>
+                <input type="tel" id="phone3" value="+55 ▼ " required>
+            </div>
+
+            <button type="submit" id="register-btn">Cadastrar</button>
+            <div id="forgot-password-login">
+                <a href="./login.html" id="forgot-back-login" class="forgot-password">Voltar ao login</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal de Sucesso -->
+    <div id="success-register-modal" class="modal hidden">
+        <div class="modal-content">
+            <svg style="width:50px; height:50px; fill: #3A503D; margin-bottom: 1rem;" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path d="M9 16.17l-3.5-3.5L4 14.17l5 5 12-12-1.41-1.42z" />
+            </svg>
+            <h2 style="color:#3A503D;">Cadastro realizado com sucesso!</h2>
+            <button id="success-register-ok"
+                style="margin-top: 1rem; padding: 0.5rem 1.5rem; border:none; border-radius: 6px; background:#BB8991; color:#fff; font-weight:bold; cursor:pointer;">OK</button>
+        </div>
+    </div>
+
+    <script src="../js/firebaseconfig.js"></script>
+    <script src="../js/login/cadastro.js"></script>
+
+</body>
+
+</html>
