@@ -39,11 +39,38 @@ async function sendMail(destinatario, codigo) {
     });
 
     const mailOptions = {
-      from: '"Suporte MinhaApp" <SEU_EMAIL@gmail.com>',
+      from: '"Inspirare Psicologia" <SEU_EMAIL@gmail.com>',
       to: destinatario,
       subject: "Código de verificação",
-      html: `<h2>Seu código de verificação é:</h2>
-             <p style="font-size:20px; font-weight:bold;">${codigo}</p>`,
+      html: `
+    <div style="
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        background-color: #f5f5f5; 
+        padding: 30px; 
+        border-radius: 10px; 
+        text-align: center; 
+        max-width: 400px; 
+        margin: auto;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    ">
+      <h2 style="
+          color: #3A503D; 
+          margin-bottom: 20px;
+      ">Código de verificação</h2>
+      <p style="
+          font-size: 22px; 
+          font-weight: bold; 
+          color: #BB8991; 
+          background-color: #fff; 
+          padding: 15px; 
+          border-radius: 8px;
+          display: inline-block;
+      ">${codigo}</p>
+      <p style="font-size: 12px; color: #999; margin-top: 30px;">
+        Se você não solicitou a redefinição de senha, ignore este email.
+      </p>
+    </div>
+  `
     };
 
     const result = await transporter.sendMail(mailOptions);
