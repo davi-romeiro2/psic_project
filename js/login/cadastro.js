@@ -4,6 +4,49 @@ const formAdult = document.getElementById('form-adult');
 const registerBtn = document.getElementById('register-btn');
 const successModal = document.getElementById('success-register-modal');
 
+// Função que mostra/oculta input "Outro"
+function setupGenero(formElement) {
+    const generoSelect = formElement.querySelector('select[id^="genero"]');
+    let inputOutroGenero = null;
+
+    generoSelect.addEventListener('change', () => {
+        const valor = generoSelect.value;
+
+        if (valor === "Outro") {
+            if (!inputOutroGenero) {
+                inputOutroGenero = document.createElement('input');
+                inputOutroGenero.type = 'text';
+                inputOutroGenero.placeholder = 'Digite seu gênero';
+                inputOutroGenero.required = true;
+                inputOutroGenero.style.marginTop = '5px';
+                generoSelect.parentNode.insertBefore(inputOutroGenero, generoSelect.nextSibling);
+            }
+        } else {
+            if (inputOutroGenero) {
+                inputOutroGenero.remove();
+                inputOutroGenero = null;
+            }
+        }
+    });
+
+    return function getGeneroValue() {
+        if (generoSelect.value === "Outro" && inputOutroGenero) {
+            return inputOutroGenero.value.trim();
+        }
+        return generoSelect.value;
+    };
+}
+
+const getGeneroKidTeen = setupGenero(document.getElementById('form-kid-teen'));
+const getGeneroAdult = setupGenero(document.getElementById('form-adult'));
+
+function getGeneroValue() {
+    if (generoSelect.value === "Outro" && inputOutroGenero) {
+        return inputOutroGenero.value.trim(); // retorna o valor digitado
+    }
+    return generoSelect.value; // retorna o valor selecionado normalmente
+}
+
 function showModal(message) {
     let existing = document.getElementById('error-modal');
     if (!existing) {
@@ -179,7 +222,7 @@ function setupPhoneInput(inputId, defaultCountryCode = "+55") {
                     document.body.appendChild(overlay);
 
                     setTimeout(() => {
-                        const numeroWhatsApp = "5511999999999";
+                        const numeroWhatsApp = "5511942271174";
                         const mensagem = encodeURIComponent("Olá, não encontrei meu país no cadastro.");
                         const link = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
                         window.open(link, "_blank");
@@ -378,9 +421,16 @@ document.addEventListener("firebaseReady", () => {
             const emailInput = formToValidate.querySelector('input[type="email"]');
             const passwordInput = formToValidate.querySelector('input[type="password"]');
             const nomeInput = formToValidate.querySelector('input[type="text"][placeholder="Digite seu nome completo"]');
-            const generoSelect = formToValidate.querySelector('#genero');
             let telefoneResponsavel = '';
             let telefoneUsuario = '';
+            let genero;
+            if (!formKidTeen.classList.contains("hidden")) {
+                // Pega o gênero do formulário criança/adolescente
+                genero = getGeneroKidTeen();
+            } else {
+                // Pega o gênero do adulto
+                genero = getGeneroAdult();
+            }
 
             if (!formKidTeen.classList.contains("hidden")) {
                 telefoneResponsavel = formToValidate.querySelector('#phone')?.value || '';
@@ -435,7 +485,7 @@ document.addEventListener("firebaseReady", () => {
                 nome: nomeInput.value,
                 email: emailInput.value,
                 emailResponsavel,
-                genero: generoSelect.value,
+                genero: genero,
                 idade,
                 telefoneResponsavel,
                 telefoneUsuario,
