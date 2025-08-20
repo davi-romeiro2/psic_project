@@ -131,8 +131,5 @@ forgotPasswordForm.addEventListener('submit', async (e) => {
 
 // === VOLTAR AO LOGIN ===
 forgotBackLogin.addEventListener('click', (e) => {
-    e.preventDefault();
-    forgotPasswordModal.style.display = 'none';
-    loginModal.style.display = 'block';
-    if (modalOverlay) modalOverlay.style.display = 'none';
+    window.location.href = '../login/login.html'; 
 });
