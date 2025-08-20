@@ -424,18 +424,13 @@ document.addEventListener("firebaseReady", () => {
             let telefoneResponsavel = '';
             let telefoneUsuario = '';
             let genero;
-            if (!formKidTeen.classList.contains("hidden")) {
-                // Pega o gênero do formulário criança/adolescente
-                genero = getGeneroKidTeen();
-            } else {
-                // Pega o gênero do adulto
-                genero = getGeneroAdult();
-            }
 
             if (!formKidTeen.classList.contains("hidden")) {
+                genero = getGeneroKidTeen();
                 telefoneResponsavel = formToValidate.querySelector('#phone')?.value || '';
                 telefoneUsuario = formToValidate.querySelector('#phone2')?.value || '';
             } else {
+                genero = getGeneroAdult();
                 telefoneUsuario = formToValidate.querySelector('#phone3')?.value || '';
             }
 
@@ -480,6 +475,13 @@ document.addEventListener("firebaseReady", () => {
                 }
             }
 
+            // Mostra overlay de loading
+            const loadingOverlay = document.getElementById('loading-overlay');
+            loadingOverlay.classList.remove('hidden');
+
+            // Espera 3 segundos
+            await new Promise(resolve => setTimeout(resolve, 3000));
+
             // Salva dados no Firestore
             await window.db.collection("usuarios").doc(user.uid).set({
                 nome: nomeInput.value,
@@ -490,15 +492,20 @@ document.addEventListener("firebaseReady", () => {
                 telefoneResponsavel,
                 telefoneUsuario,
                 tipo: tipoUsuario,
-                foto: photoBase64, // Base64 da imagem
+                foto: photoBase64,
                 criadoEm: firebase.firestore.FieldValue.serverTimestamp()
             });
 
-            // Mostra modal de sucesso
+            // Esconde overlay e mostra modal de sucesso
+            loadingOverlay.classList.add('hidden');
             successModal.classList.remove("hidden");
             successModal.style.display = "flex";
 
         } catch (error) {
+            // Esconde overlay se der erro
+            const loadingOverlay = document.getElementById('loading-overlay');
+            loadingOverlay.classList.add('hidden');
+
             let mensagem = "Erro ao cadastrar.";
 
             switch (error.code) {
