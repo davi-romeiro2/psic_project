@@ -42,15 +42,28 @@ body {
     /* ou a cor que quiser */
 }
 
-
 .login-container {
     background: white;
-    padding: 2rem;
+    padding: 2rem 5vw;
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 430px;
     text-align: center;
+    margin: 0 auto; 
+}
+
+@media (max-width: 450px) {
+    .login-container {
+        width: calc(100% - 2rem); 
+        padding: 1.5rem;           
+        margin-left: 1rem;         
+        margin-right: 1rem;        
+    }
+
+    .login-header img{
+        margin: 0 0 0 0;
+    }
 }
 
 #login-modal h1 {
