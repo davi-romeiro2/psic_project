@@ -1,4 +1,4 @@
-##Comandos para subir o projeto em ordem:
+## Comandos para subir o projeto em ordem:
 
 cd "C:\caminho\para\sua\pasta"
 
@@ -14,7 +14,7 @@ git branch -M main
    
 git push -u origin main
 
-##Comando para rodar o server:
+## Comando para rodar o server:
 
 cd (Caminho pra minha pasta JS/Server)
 
