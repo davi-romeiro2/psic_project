@@ -19,3 +19,7 @@ git push -u origin main
 cd (Caminho pra minha pasta JS/Server)
 
 node server.js
+
+## Atenção:
+
+Ao rodar, colocar o JSON secreto
