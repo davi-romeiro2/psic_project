@@ -6,6 +6,7 @@
     <title>Cadastro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/login/cadastro.css">
+    <link rel="icon" type="image/png" href="../img/logoI.png" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.min.css" />
 </head>
@@ -44,13 +45,19 @@
                 <input type="email" placeholder="Digite o email do responsável" required />
 
                 <label>Senha</label>
+                <br>
                 <ul class="password-requirements">
                     <li id="kid-req-uppercase">• Uma letra maiúscula</li>
                     <li id="kid-req-special">• Um caractere especial (@#$%&*)</li>
                     <li id="kid-req-number">• Um número</li>
                     <li id="kid-req-length">• No mínimo 8 caracteres</li>
                 </ul>
-                <input type="password" id="password-cadastro-kid" required />
+                <br>
+                <div class="input-wrapper">
+                    <input type="password" id="password-cadastro-kid" placeholder="Digite uma nova senha" required />
+                    <img src="../img/eye_closed.svg" alt="Mostrar senha" class="toggle-eye"
+                        data-target="password-cadastro-kid">
+                </div>
 
                 <label>Nome Completo</label>
                 <input type="text" placeholder="Digite seu nome completo" required />
@@ -92,13 +99,19 @@
                 <input type="email" placeholder="Digite seu email" required />
 
                 <label>Senha</label>
+                <br>
                 <ul class="password-requirements">
                     <li id="adult-req-uppercase">• Uma letra maiúscula</li>
                     <li id="adult-req-special">• Um caractere especial (@#$%&*)</li>
                     <li id="adult-req-number">• Um número</li>
                     <li id="adult-req-length">• No mínimo 8 caracteres</li>
                 </ul>
-                <input type="password" id="password-cadastro-adult" required />
+                <br>
+                <div class="input-wrapper">
+                    <input type="password" id="password-cadastro-adult" placeholder="Digite uma nova senha" required />
+                    <img src="../img/eye_closed.svg" alt="Mostrar senha" class="toggle-eye"
+                        data-target="password-cadastro-adult">
+                </div>
 
                 <label>Nome Completo</label>
                 <input type="text" placeholder="Digite seu nome completo" required />
