@@ -141,3 +141,30 @@ body {
 .register-section a:hover {
     text-decoration: underline;
 }
+
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 40px; /* espaço pro ícone */
+  box-sizing: border-box;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.toggle-icon:hover {
+  opacity: 1;
+}
