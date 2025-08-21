@@ -157,13 +157,19 @@ forgotPasswordForm.addEventListener('submit', async (e) => {
         });
 
         const data = await response.json();
+
         if (data.success) {
             showModal("Código enviado! Confira seu email.");
             forgotPasswordForm.style.display = "none";
             verificationCodeForm.style.display = "block";
             codeInputs[0].focus();
         } else {
-            showModal("Erro ao enviar email: " + traduzErro(data.error));
+            // Novo tratamento para usuário não encontrado
+            if (data.error && (data.error.includes("not found") || data.error.includes("Usuário não encontrado"))) {
+                showModal("Usuário não encontrado.");
+            } else {
+                showModal("Erro ao enviar email: " + traduzErro(data.error));
+            }
         }
     } catch (err) {
         showModal(traduzErro(err.message));
