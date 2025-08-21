@@ -66,6 +66,13 @@ async function sendMail(destinatario, codigo) {
           border-radius: 8px;
           display: inline-block;
       ">${codigo}</p>
+      <p style="
+          margin-top: 20px; 
+          font-size: 14px; 
+          color: #555;
+      ">
+        Use este código para redefinir sua senha. Ele é válido por 10 minutos.
+      </p>
       <p style="font-size: 12px; color: #999; margin-top: 30px;">
         Se você não solicitou a redefinição de senha, ignore este email.
       </p>
