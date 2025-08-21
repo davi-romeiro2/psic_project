@@ -150,15 +150,16 @@ function setupPhoneInput(inputId, defaultCountryCode = "+55") {
         { name: "Estados Unidos", code: "+1", mask: "(###) ###-####" },
         { name: "Reino Unido", code: "+44", mask: "#### ### ####" },
         { name: "Itália", code: "+39", mask: "#### ### ####" },
-        { name: "Não achou seu país? clique aqui." } // opção especial
+        { name: "Não achou seu país? clique aqui." }
     ];
 
     let currentCountry = countries.find(c => c.code === defaultCountryCode) || countries[0];
+    let currentNumber = "";
 
-    // Inicializa valor do input
+    // Inicializa
     input.value = currentCountry.code + " ▼ ";
 
-    // --- Funções reutilizáveis ---
+    // --- Funções ---
     function applyMask(value, mask) {
         let i = 0;
         return mask.replace(/#/g, _ => value[i++] || '');
@@ -168,11 +169,11 @@ function setupPhoneInput(inputId, defaultCountryCode = "+55") {
         const existingModal = document.getElementById("countryModal-" + inputId);
         if (existingModal) {
             existingModal.remove();
-            input.value = currentCountry.code + " ▼ ";
+            input.value = currentCountry.code + " ▼ " + applyMask(currentNumber, currentCountry.mask);
             return;
         }
 
-        input.value = currentCountry.code + " ▲ ";
+        input.value = currentCountry.code + " ▲ " + applyMask(currentNumber, currentCountry.mask);
 
         const modal = document.createElement("div");
         modal.id = "countryModal-" + inputId;
@@ -190,8 +191,15 @@ function setupPhoneInput(inputId, defaultCountryCode = "+55") {
             if (c.code) {
                 item.textContent = c.name + " (" + c.code + ")";
                 item.addEventListener("click", () => {
-                    currentCountry = c;
-                    input.value = currentCountry.code + " ▼ ";
+                    if (c.code !== currentCountry.code) {
+                        // <<< mudou o país → apaga número digitado
+                        currentCountry = c;
+                        currentNumber = "";
+                        input.value = currentCountry.code + " ▼ ";
+                    } else {
+                        // <<< clicou no mesmo país → mantém o número
+                        input.value = currentCountry.code + " ▼ " + applyMask(currentNumber, currentCountry.mask);
+                    }
                     input.focus();
                     modal.remove();
                 });
@@ -243,7 +251,7 @@ function setupPhoneInput(inputId, defaultCountryCode = "+55") {
         function clickOutside(e) {
             if (!modal.contains(e.target) && e.target !== input) {
                 modal.remove();
-                input.value = currentCountry.code + " ▼ ";
+                input.value = currentCountry.code + " ▼ " + applyMask(currentNumber, currentCountry.mask);
                 document.removeEventListener("click", clickOutside);
             }
         }
@@ -302,6 +310,8 @@ function setupPhoneInput(inputId, defaultCountryCode = "+55") {
         let val = input.value.replace(/\D/g, "");
         const prefixNumbers = currentCountry.code.replace("+", "");
         if (val.startsWith(prefixNumbers)) val = val.slice(prefixNumbers.length);
+
+        currentNumber = val;
         const masked = applyMask(val, currentCountry.mask);
         input.value = currentCountry.code + " ▼ " + masked;
     });
@@ -544,4 +554,19 @@ document.getElementById('success-register-ok').addEventListener('click', () => {
 document.querySelector('form.register-form').addEventListener('submit', (e) => {
     e.preventDefault(); // impede validação nativa
     registerBtn.click(); // dispara seu código de validação customizado
+});
+
+document.querySelectorAll(".toggle-eye").forEach(icon => {
+    icon.addEventListener("click", () => {
+        const inputId = icon.getAttribute("data-target");
+        const input = document.getElementById(inputId);
+
+        if (input.type === "password") {
+            input.type = "text";
+            icon.src = "../img/eye_opened.svg"; // ícone de olho fechado
+        } else {
+            input.type = "password";
+            icon.src = "../img/eye_closed.svg"; // ícone de olho aberto
+        }
+    });
 });
