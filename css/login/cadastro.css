@@ -367,3 +367,31 @@ input[type=number] {
     -webkit-appearance: none;
     appearance: textfield; /* padrão seguro */
 }
+
+.input-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%; /* ajusta conforme seu layout */
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* espaço pro ícone */
+  box-sizing: border-box;
+}
+
+.input-wrapper .toggle-eye {
+  position: absolute;
+  top: 45%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.input-wrapper .toggle-eye:hover {
+  opacity: 1;
+}
