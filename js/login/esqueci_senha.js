@@ -46,14 +46,14 @@ passwordInput.addEventListener('input', validatePassword);
 updatePasswordButton.addEventListener('click', (e) => {
     e.preventDefault();
     if (passwordInput.value.trim() === '') {
-        alert("Digite uma nova senha.");
+        showModal("Digite uma nova senha.");
         return;
     }
     const isValid = validatePassword();
     if (isValid) {
         successModal.style.display = 'flex';
     } else {
-        alert("A senha não atende aos requisitos.");
+        showModal("A senha não atende aos requisitos.");
         successModal.style.display = 'none';
     }
 });
@@ -78,7 +78,7 @@ function verificarCodigo() {
         newPasswordForm.style.display = "block";
         newPasswordForm.querySelector('input').focus();
     } else {
-        alert("Código incorreto. Tente novamente.");
+        showModal("Código incorreto. Tente novamente.");
         codeInputs.forEach(input => input.value = "");
         codeInputs[0].focus();
     }
@@ -95,13 +95,54 @@ codeInputs.forEach((input, index) => {
     });
 });
 
+// === MODAL CUSTOMIZADO ===
+function showModal(message) {
+    const modal = document.getElementById("customModal");
+    const messageEl = document.getElementById("customModalMessage");
+    messageEl.textContent = message;
+    modal.style.display = "flex";
+}
+
+function traduzErro(errMessage) {
+    if (!errMessage) return "Ocorreu um erro desconhecido.";
+
+    const erros = {
+        "Failed to fetch": "Não foi possível conectar ao servidor. Verifique sua internet ou se o servidor está ativo.",
+        "NetworkError": "Erro de rede. Tente novamente mais tarde.",
+        "timeout": "A requisição demorou muito para responder (timeout).",
+        "Unexpected token": "Resposta inválida do servidor.",
+        "Internal Server Error": "Erro interno no servidor.",
+        "Bad Request": "Requisição inválida. Verifique os dados enviados.",
+        "Unauthorized": "Acesso não autorizado.",
+        "Forbidden": "Permissão negada.",
+        "Not Found": "Servidor ou recurso não encontrado.",
+        "Service Unavailable": "Servidor indisponível no momento.",
+        "unable to verify the first certificate": "Não foi possível verificar o certificado SSL do servidor."
+    };
+
+    // Procura se alguma chave aparece dentro da mensagem do erro
+    for (let chave in erros) {
+        if (errMessage.includes(chave)) {
+            return erros[chave];
+        }
+    }
+
+    // Se não encontrou nenhuma tradução específica
+    return "Erro: " + errMessage;
+}
+
+// Fechar modal
+document.getElementById("customModalClose").addEventListener("click", () => {
+    document.getElementById("customModal").style.display = "none";
+});
+
 // === ENVIO DO EMAIL COM CÓDIGO ===
 forgotPasswordForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = document.getElementById('user-or-email').value.trim();
-    if (!email) { 
-        alert("Digite um email válido."); 
-        return; 
+    if (!email) {
+        showModal("Digite um email válido.");
+        return;
     }
 
     // Gera o código e salva globalmente
@@ -117,19 +158,19 @@ forgotPasswordForm.addEventListener('submit', async (e) => {
 
         const data = await response.json();
         if (data.success) {
-            alert("Código enviado! Confira seu email.");
+            showModal("Código enviado! Confira seu email.");
             forgotPasswordForm.style.display = "none";
             verificationCodeForm.style.display = "block";
             codeInputs[0].focus();
         } else {
-            alert("Erro ao enviar email: " + data.error);
+            showModal("Erro ao enviar email: " + traduzErro(data.error));
         }
     } catch (err) {
-        alert("Erro na requisição: " + err.message);
+        showModal(traduzErro(err.message));
     }
 });
 
 // === VOLTAR AO LOGIN ===
 forgotBackLogin.addEventListener('click', (e) => {
-    window.location.href = '../login/login.html'; 
+    window.location.href = '../login/login.html';
 });
