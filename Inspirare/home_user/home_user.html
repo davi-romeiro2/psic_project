@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Psicologia</title>
+  <link rel="icon" type="image/png" href="../img/logoI.svg">
+  <link rel="stylesheet" href="../side_bar/side_bar.css">
+  <link rel="stylesheet" href="./home_user.css">
+</head>
+
+<body>
+
+  <div id="sidebar-container"></div>
+
+  <div class="container">
+    <!-- Botão Agendar consulta -->
+    <div class="option" onclick="window.location.href='./agendar.html'">
+      <img src="../img/clock_icon.svg" alt="Ícone relógio">
+      <p>Agendar consulta</p>
+    </div>
+
+    <!-- Botão Ver consultas agendadas -->
+    <div class="option" onclick="window.location.href='./consultas.html'">
+      <img src="../img/uis_schedule.svg" alt="Ícone agenda">
+      <p>Ver consultas agendadas</p>
+    </div>
+  </div>
+
+  <script>
+    fetch('../side_bar/side_bar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('sidebar-container').innerHTML = data;
+      });
+  </script>
+</body>
+
+</html>
