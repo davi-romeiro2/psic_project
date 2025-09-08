@@ -29,7 +29,7 @@ tabs.forEach(tab => {
         next.classList.add('active');
         next.style.transform = 'translateX(0)';
         next.style.opacity = 1;
-        next.style.maxHeight = '2000px';
+        next.style.maxHeight = '570px';
 
         // Aba ativa
         tabs.forEach(t => t.classList.remove('active'));
