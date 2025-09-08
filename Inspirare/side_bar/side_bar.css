@@ -19,7 +19,7 @@ body {
     top: 32px;
     left: 20px;
     width: 260px;
-    height: 90vh;
+    height: 92vh;
     background: #F5F5F5;
     color: var(--verde-escuro);
     border-radius: 25px;
@@ -57,7 +57,7 @@ body {
 .sidebar-menu {
     display: flex;
     flex-direction: column;
-    gap: 51px;              /* espaçamento reduzido */
+    gap: 58px;              /* espaçamento reduzido */
     flex-grow: 1;
     justify-content: flex-start;
     padding-left: 15px;
