@@ -1,0 +1,108 @@
+:root {
+    --rosa: #BB8991;
+    --verde-escuro: #3A503D;
+    --verde-claro: #91A697;
+    --cinza: #C4C4C4;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+/* Sidebar container */
+.sidebar {
+    position: fixed;
+    top: 65px;
+    left: 20px;
+    width: 260px;
+    height: 82vh;
+    background: #F5F5F5;
+    color: var(--verde-escuro);
+    border-radius: 25px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+/* Logo */
+.sidebar-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid var(--rosa);
+    overflow: hidden;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-logo img {
+    width: 130%;           /* aumenta a largura para poder reduzir com scale */
+    height: 123%;          /* idem */
+    object-fit: contain;    /* mostra a imagem inteira sem cortar */
+    transform: scale(0.9);  /* diminui a imagem, “zoom out” */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Menu */
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 75px;              /* espaçamento reduzido */
+    flex-grow: 1;
+    justify-content: flex-start;
+    padding-left: 15px;
+    margin-top: 20px;
+}
+
+.sidebar-menu a {
+    align-items: center;
+    text-decoration: none; /* remove o sublinhado */
+    color: inherit; /* usa a mesma cor do texto */
+    transition: background 0.3s;
+}
+
+.sidebar-menu a:hover {
+    background: rgba(255, 255, 255, 0.1); /* efeito hover */
+}
+
+/* Nome do usuário abaixo da logo */
+.sidebar-username {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--verde-escuro);
+    margin-top: 5px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.menu-item img {
+    width: 30px;
+    height: 30px;
+    transition: filter 0.3s ease;
+}
+
+.menu-item:hover {
+    color: var(--rosa);
+}
+
+.menu-item:hover img {
+    filter: invert(55%) sepia(15%) saturate(600%) hue-rotate(300deg) brightness(90%) contrast(90%);
+}
