@@ -1,0 +1,116 @@
+:root {
+  --rosa: #BB8991;
+  --verde-escuro: #3A503D;
+  --verde-claro: #91A697;
+  --cinza: #C4C4C4;
+  --branco: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, var(--verde-claro), var(--rosa));
+  color: var(--verde-escuro);
+}
+
+.edit-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-card {
+  background: var(--branco);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 800px;  /* Mais largo */
+  min-height: 400px; /* Mais baixo */
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.edit-card h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--verde-escuro);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: var(--verde-escuro);
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-row .form-group.small {
+  max-width: 120px; /* Idade fica menor */
+}
+
+.form-group label {
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: var(--verde-escuro);
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.6rem;
+  border: 1px solid var(--cinza);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.btn-salvar {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--verde-escuro);
+  color: var(--branco);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-salvar:hover {
+  background: #2f3f32;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

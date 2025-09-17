@@ -1,0 +1,455 @@
+:root {
+    --rosa: #BB8991;
+    --verde-escuro: #3A503D;
+    --verde-claro: #91A697;
+    --cinza: #C4C4C4;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(135deg, var(--verde-claro), var(--rosa));
+    color: var(--verde-escuro);
+}
+
+/* 🔹 Botões no topo */
+.top-buttons {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+    margin-left: 250px; /* recuo por causa da sidebar */
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 12px;
+    padding: 20px 25px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    text-align: center;
+    border: 2px solid var(--cinza);
+
+    /* 🔹 Menor tamanho */
+    width: 200px;
+    height: 160px;
+}
+
+.option:hover {
+    transform: scale(1.05);
+    background-color: var(--rosa);
+    color: white;
+    border-color: var(--verde-escuro);
+}
+
+.option img {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 10px;
+    filter: brightness(0) saturate(100%) invert(24%) sepia(10%) saturate(600%) hue-rotate(90deg) brightness(90%) contrast(90%);
+}
+
+.option:hover img {
+    filter: brightness(0) invert(1);
+}
+
+.option p {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* 🔹 Botão WhatsApp com cores próprias */
+.option.whatsapp {
+    background: #25D366;
+    color: white;
+    border: 2px solid #25D366;
+}
+
+.option.whatsapp img {
+    filter: brightness(0) invert(1); /* ícone branco */
+}
+
+.option.whatsapp:hover {
+    background: white;
+    color: #25D366;
+    border-color: #25D366;
+}
+
+.option.whatsapp:hover img {
+    filter: invert(54%) sepia(96%) saturate(372%) hue-rotate(88deg) brightness(95%) contrast(90%);
+}
+
+/* 🔹 Card de informações */
+.info-card {
+    width: 75%;                /* ocupa 75% da largura da tela */
+    margin: 40px auto;
+    margin-left: 340px;        /* recuo da sidebar */
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    min-height: 180px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.info-card h2 {
+  text-align: center;
+  margin-bottom: 35px; /* espaço abaixo do título */
+}
+
+.hidden {
+    display: none;
+}
+
+.info-content {
+    font-size: 16px;
+    color: var(--verde-escuro);
+}
+
+/* 🔹 Abas de dias para Agendar Consulta */
+.day-tabs {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.day-tab {
+    padding: 8px 15px;
+    border: 1px solid var(--cinza);
+    border-radius: 8px;
+    background: #f0f0f0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s;
+}
+
+.day-tab:hover {
+    background: var(--verde-claro);
+    color: white;
+}
+
+.day-tab.active {
+    background: var(--verde-escuro);
+    color: white;
+}
+
+/* Conteúdo do dia */
+.day-content {
+    font-size: 16px;
+    color: var(--verde-escuro);
+    padding: 10px;
+    border-top: 1px solid var(--cinza);
+}
+
+/* Lista de horários */
+.day-hours {
+    display: flex;
+    flex-wrap: wrap; /* permite quebrar linha se não couber */
+    gap: 10px;       /* espaçamento entre os horários */
+    margin-top: 15px;
+}
+
+.day-hours button {
+    background: #e0e0e0; /* cinza claro */
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-weight: bold;
+}
+
+.day-hours button:hover {
+    background: var(--verde-claro);
+    color: white;
+}
+
+.sub-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--verde-escuro);
+    margin-top: 20px;  /* aumenta o espaçamento acima do subtítulo */
+    margin-bottom: 8px; /* mantém espaçamento abaixo */
+}
+
+/* Pagamento */
+.payment-options {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.payment-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+.payment-btn.gray {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.payment-btn.green {
+  background: #91A697;
+  color: white;
+}
+
+.payment-btn:hover {
+  transform: scale(1.05);
+}
+
+.pay-methods {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pay-methods button {
+  flex: 1; /* cada botão ocupa metade do espaço disponível */
+  padding: 15px 0;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.pix-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.pix-copy-btn {
+  background: #007BFF; /* azul */
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.pix-copy-btn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+.pix-copy-btn .btn-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1); /* deixa o ícone branco */
+}
+
+.pix-pay-btn {
+  background: #e0e0e0; /* cinza */
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.pix-pay-btn:hover {
+  background: #ccc;
+  transform: scale(1.05);
+}
+
+.payment-options-split {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.payment-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.payment-side h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.payment-side p {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.divider {
+  width: 2px;
+  background-color: #ccc;
+  margin: 0 15px;
+}
+
+.scheduled-cards {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    overflow-x: auto; /* para permitir scroll horizontal */
+    padding-bottom: 40px; /* espaço para as setas embaixo */
+}
+
+.scheduled-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: background 0.3s, color 0.3s;
+    min-width: 200px; /* largura mínima para não quebrar */
+    width: max-content; /* altura e largura se ajustam ao conteúdo */
+}
+
+.scheduled-card:hover {
+    background: #3A503D; /* verde escuro */
+    color: #fff;
+}
+
+/* Faz com que o texto dentro do card também mude de cor no hover */
+.scheduled-card:hover p {
+    color: #fff;
+}
+
+/* 🔹 Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 15px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.modal-content .close_X {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  padding: 0; /* remove padding que pode distorcer a imagem */
+}
+
+.modal-content .close_X img {
+  width: 100%;
+  height: 100%;
+  filter: none; /* garante que a imagem fique como é */
+}
+
+/* Botão de fechar modal agora como imagem */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-close img {
+  width: 25px; /* ajuste conforme a sua imagem */
+  height: 25px;
+}
+
+/* Botões Pix / Cartão */
+.modal-content button {
+  padding: 12px 18px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.modal-content button:hover {
+  transform: scale(1.05);
+}
+
+.modal-content .pix-btn {
+  background: #25D366;
+  color: white;
+}
+
+.modal-content .card-btn {
+  background: #91A697;
+  color: white;
+}
+
+/* Inputs do cartão */
+.modal-content input {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.modal-content img.qr-code {
+  width: 150px;
+  margin: 15px auto;
+  display: block;
+}
+
+.modal-content #pix-key {
+  width: 80%;
+  padding: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+}
